@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEdit</title>
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="cedit/css/cedit.min.css">
+  <link rel="stylesheet" href="cedit/css/cedit-theme-default.min.css">
+</head>
+<body>
+  <h1>CEdit</h1>
+  <h2>Demo</h2>
+  <h3>Standalone</h3>
+  <textarea id="cedit1" autofocus>This is _a test_ for tokens!</textarea>
+  <h3>Inside form</h3>
+  <form action="form.php" method="post">
+    <textarea id="cedit2" name="data" required placeholder="Reply to this thread&hellip;"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  <script src="/cedit/js/cedit.js"></script>
+  <script>
+    var editors = [];
+    for (var e of document.querySelectorAll("textarea"))
+      editors.push(new CEdit(e));
+  </script>
+</body>
+</html>
