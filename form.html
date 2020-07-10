@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Form result</title>
+    <link rel="stylesheet" href="page.css" type="text/css">
+  </head>
+  <body>
+    <h1>Form result</h1>
+    <pre style="background-color: #eeeeee;" id="m1"></pre>
+    <p><a href=".">Back to demo</a></p>
+    <script type="text/javascript">
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+      var data = getParameterByName("data");
+      var m1 = document.getElementById("m1");
+      m1.innerText = data;
+    </script>
+  </body>
+</html>
