@@ -1,0 +1,83 @@
+.cedit-root {
+  font-size: 11pt;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  color: #fff;
+}
+.cedit-toolbar {
+  background-color: #222;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  padding: 4px;
+}
+.cedit-toolbar.cedit-toolbar-collapsed {
+  margin-bottom: 0;
+  padding: 0;
+  border: 0;
+}
+.cedit-toolbar-button {
+  appearance: none;
+  background-color: #336;
+  border: 1px solid #fff;
+  color: #fff;
+  font: inherit;
+  border-radius: 4px;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+.cedit-toolbar-button:hover {
+  background-color: #663;
+}
+.cedit-toolbar-button:focus {
+  border-color: #aaf;
+  outline: none;
+}
+.cedit-toolbar-button.cedit-toolbar-button-highlighted {
+  color: #aaf;
+}
+.cedit-toolbar-button.cedit-toolbar-button-group-begin {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+.cedit-toolbar-button.cedit-toolbar-button-group-inside {
+  border-radius: 0;
+  border-right: 0;
+}
+.cedit-toolbar-button.cedit-toolbar-button-group-end {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.cedit-toolbar-separator {
+  margin: 0 2px;
+  width: 0;
+  background: none;
+}
+.cedit-textarea {
+  appearance: none;
+  padding: 4px;
+  border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.cedit-textarea:focus {
+  outline: none;
+  border-color: #aaf;
+  background: #336;
+}
+.cedit-alert-root {
+  background: rgba(255,255,255,0.85);
+  border: 1px solid #fff;
+  border-radius: 4px;
+}
+.cedit-alert-message {
+  color: #000;
+  white-space: pre;
+  font-family: monospace;
+  padding: 8px;
+}
+.cedit-alert-buttons {
+  padding: 8px;
+  border-top: 1px solid #fff;
+}

@@ -8,6 +8,10 @@ function CEdit(textarea) {
   var TOOLBARGROUP_INSIDE = 2;
   var TOOLBARGROUP_END    = 3;
 
+  var VERSION = [0,3,0];
+
+  console.log("%cCEdit Version " + VERSION.join("."), "font-size:2em;font-weight:bold");
+
   // ========================================================================= //
 
   function insert_around_selection(before, after) {
@@ -386,6 +390,7 @@ function CEdit(textarea) {
 
   register_command_text("builtin/text/link", "ctrl-l", "{link:url ", "}", "Insert hyperlink");
   register_command_text("builtin/text/mention", "ctrl-m", "{user:|}", null, "Mention user", true);
+  register_command_text("builtin/text/image", "ctrl-shift-k", "{image:| alttext}", null, "Insert image", true);
   
   for (var i = 1; i <= 6; i++)
     register_command_text("builtin/text/header" + i, "ctrl-shift-" + "asdfgh".split("")[i-1], repeat_string("#", i) + " ", "", "Header " + i, true);
@@ -406,8 +411,9 @@ function CEdit(textarea) {
   add_toolbar_separator();
   tb_begin_group();
   add_toolbar_button("\uD83D\uDD17\uFE0E", "builtin/text/link", "Insert hyperlink").classList.add("cedit-toolbar-button_text-link", "cedit-toolbar-button-fixed-width");
-  tb_end_group();
   add_toolbar_button("\uD83C\uDFA8\uFE0E", "builtin/font/color", "Change text color").classList.add("cedit-toolbar-button_font-color", "cedit-toolbar-button-fixed-width");
+  tb_end_group();
+  add_toolbar_button("\uD83D\uDDBC\uFE0E", "builtin/text/image", "Insert image").classList.add("cedit-toolbar-button_text-image", "cedit-toolbar-button-fixed-width");
   add_toolbar_separator();
   add_toolbar_button("@", "builtin/text/mention", "Mention user").classList.add("cedit-toolbar-button_text-mention", "cedit-toolbar-button-fixed-width");
   add_toolbar_separator();
