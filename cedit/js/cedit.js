@@ -241,7 +241,7 @@ function CEdit(textarea) {
       keys.ctrl ? "Ctrl" : null,
       keys.alt ? "Alt" : null,
       keys.shift ? "Shift" : null,
-      upper_case_first(keys.key)
+      keys.key === " " ? "Space" : upper_case_first(keys.key)
     ].filter(Boolean).join("-");
   }
   function show_alert(message) {
