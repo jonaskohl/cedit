@@ -303,6 +303,7 @@ function CEdit(textarea) {
     });
     var right_token = null;
     var left_continue = true;
+    // TODO Also check right side and use the one that's closer
     while (left_index >= 0 && left_continue) {
       for (var token of available_tokens) {
         if (textarea.value.substr(left_index - token.before.length, token.before.length) === token.before) {
@@ -421,7 +422,7 @@ function CEdit(textarea) {
   register_command("builtin/text/lowercase", "ctrl-shift-arrowdown", "Lowercase", lc_selection);
   
   for (var i = 1; i <= 6; i++)
-    register_command_text("builtin/text/header" + i, "ctrl-shift-" + "asdfgh".split("")[i-1], repeat_string("#", i) + " ", "", "Header " + i, true);
+    register_command_text("builtin/text/header" + i, "ctrl-shift-" + "asdfgh".split("")[i-1], repeat_string("#", i) + " ", "", "Header " + i);
 
   register_command("builtin/action/submit", "ctrl-enter", "Submit form", submit_if_in_form);
   register_command("builtin/action/help", "ctrl-shift-j", "Show keyboard shortcuts", show_help);
@@ -440,10 +441,14 @@ function CEdit(textarea) {
   tb_begin_group();
   add_toolbar_button("\uD83D\uDD17\uFE0E", "builtin/text/link", "Insert hyperlink").classList.add("cedit-toolbar-button_text-link", "cedit-toolbar-button-fixed-width");
   add_toolbar_button("\uD83C\uDFA8\uFE0E", "builtin/font/color", "Change text color").classList.add("cedit-toolbar-button_font-color", "cedit-toolbar-button-fixed-width");
-  tb_end_group();
   add_toolbar_button("\uD83D\uDDBC\uFE0E", "builtin/text/image", "Insert image").classList.add("cedit-toolbar-button_text-image", "cedit-toolbar-button-fixed-width");
-  add_toolbar_separator();
+  tb_end_group();
   add_toolbar_button("@", "builtin/text/mention", "Mention user").classList.add("cedit-toolbar-button_text-mention", "cedit-toolbar-button-fixed-width");
+  add_toolbar_separator();
+  tb_begin_group();
+  add_toolbar_button("a", "builtin/text/lowercase", "Lowercase").classList.add("cedit-toolbar-button_text-lowercase", "cedit-toolbar-button-fixed-width");
+  tb_end_group();
+  add_toolbar_button("A", "builtin/text/uppercase", "Uppercase").classList.add("cedit-toolbar-button_text-uppercase", "cedit-toolbar-button-fixed-width");
   add_toolbar_separator();
   add_toolbar_button("?", "builtin/action/help", "Show keyboard shortcuts").classList.add("cedit-toolbar-button_action-help", "cedit-toolbar-button-fixed-width");
   add_toolbar_separator();
