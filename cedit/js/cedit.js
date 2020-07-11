@@ -303,7 +303,7 @@ function CEdit(textarea) {
     });
     var right_token = null;
     var left_continue = true;
-    while (left_index > 0 && left_continue) {
+    while (left_index >= 0 && left_continue) {
       for (var token of available_tokens) {
         if (textarea.value.substr(left_index - token.before.length, token.before.length) === token.before) {
           right_token = token.after;
@@ -317,7 +317,7 @@ function CEdit(textarea) {
     if (right_token === null)
       return;
     var right_found = false;
-    while (right_index < textarea.value.length - 1) {
+    while (right_index < textarea.value.length) {
       if (textarea.value.substr(right_index, right_token.length) === right_token) {
         right_found = true;
         break;
@@ -329,6 +329,32 @@ function CEdit(textarea) {
       textarea.selectionStart = left_index;
       textarea.selectionEnd = right_index;
     }
+  }
+  function uc_selection() {
+    var seltext = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+    var seltext_uc = seltext.toUpperCase();
+    var sdiff = seltext_uc.length - seltext.length;
+    var s_start = textarea.selectionStart;
+    var s_end = textarea.selectionEnd;
+    textarea.value =
+      textarea.value.substring(0, s_start) +
+      seltext_uc +
+      textarea.value.substring(s_end);
+    textarea.selectionStart = s_start;
+    textarea.selectionEnd = s_end + sdiff;
+  }
+  function lc_selection() {
+    var seltext = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+    var seltext_lc = seltext.toLowerCase();
+    var sdiff = seltext_lc.length - seltext.length;
+    var s_start = textarea.selectionStart;
+    var s_end = textarea.selectionEnd;
+    textarea.value =
+      textarea.value.substring(0, s_start) +
+      seltext_lc +
+      textarea.value.substring(s_end);
+    textarea.selectionStart = s_start;
+    textarea.selectionEnd = s_end + sdiff;
   }
 
   // ========================================================================= //
@@ -391,6 +417,8 @@ function CEdit(textarea) {
   register_command_text("builtin/text/link", "ctrl-l", "{link:url ", "}", "Insert hyperlink");
   register_command_text("builtin/text/mention", "ctrl-m", "{user:|}", null, "Mention user", true);
   register_command_text("builtin/text/image", "ctrl-shift-k", "{image:| alttext}", null, "Insert image", true);
+  register_command("builtin/text/uppercase", "ctrl-shift-arrowup", "Uppercase", uc_selection);
+  register_command("builtin/text/lowercase", "ctrl-shift-arrowdown", "Lowercase", lc_selection);
   
   for (var i = 1; i <= 6; i++)
     register_command_text("builtin/text/header" + i, "ctrl-shift-" + "asdfgh".split("")[i-1], repeat_string("#", i) + " ", "", "Header " + i, true);
